@@ -7,259 +7,159 @@
     <link rel="icon" href="logo.png" type="logo/png">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
             --primary: #2563eb;
-            --secondary: #6366f1;
             --dark: #0f172a;
             --slate: #64748b;
-            --light: #f8fafc;
+            --light-bg: #f8fafc;
+            --border-color: #e2e8f0;
         }
 
-        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--dark); overflow-x: hidden; scroll-behavior: smooth; background: #fff; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--dark); background: #ffffff; }
 
-        .navbar { padding: 15px 0; background: #fff; border-bottom: 1px solid #f1f5f9; }
-        .navbar-brand img { height: 50px; width: auto; }
+        /* General UI */
+        .navbar { padding: 1rem 0; background: #fff; border-bottom: 1px solid var(--border-color); }
+        .hero-section { padding: 80px 0; }
+        .section-img { width: 100%; border-radius: 16px; border: 1px solid var(--border-color); }
 
-        .hero-section { padding: 100px 0 60px; }
-        .section-img { width: 100%; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-
-        .role-card { background: #fff; border-radius: 20px; padding: 30px; border: 1px solid #f1f5f9; height: 100%; }
-        .role-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 20px; }
-        .bg-admin { background: #eff6ff; color: #2563eb; }
-        .bg-guru { background: #f5f3ff; color: #7c3aed; }
-        .bg-murid { background: #ecfdf5; color: #10b981; }
-
-        .pricing-section { background: #fafafa; padding: 80px 0; }
-        .price-card { background: #fff; border-radius: 30px; padding: 45px 30px; border: 2px solid #f1f5f9; height: 100%; position: relative; display: flex; flex-direction: column; }
-        .price-card.featured { border: 3px solid var(--primary); box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.15); }
-        .price-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #fff; padding: 6px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; z-index: 10; }
-        .price-amount { font-size: 2.5rem; font-weight: 800; margin: 20px 0; letter-spacing: -1px; }
-        .price-amount span { font-size: 1rem; color: var(--slate); font-weight: 400; }
+        /* Cards */
+        .role-card { background: #fff; border-radius: 16px; padding: 24px; border: 1px solid var(--border-color); height: 100%; transition: all 0.3s ease; }
+        .role-card:hover { border-color: var(--primary); transform: translateY(-4px); }
         
-        .feat-list { list-style: none; padding: 0; margin-bottom: 30px; flex-grow: 1; }
-        .feat-list li { margin-bottom: 12px; display: flex; align-items: center; font-size: 0.95rem; }
-        .feat-list i { margin-right: 10px; }
-        .fa-check { color: #22c55e; }
-        .fa-times { color: #ef4444; }
+        /* Pricing */
+        .price-card { background: #fff; border-radius: 20px; padding: 40px 24px; border: 1px solid var(--border-color); height: 100%; }
+        .price-card.featured { border: 2px solid var(--primary); }
+        .price-amount { font-size: 2.5rem; font-weight: 800; margin: 15px 0; }
 
-        .comment-box { background: #fff; border-radius: 24px; padding: 40px; border: 1px solid #f1f5f9; max-width: 800px; margin: 0 auto; }
-        .form-input { background: var(--light); border: 2px solid transparent; padding: 15px; border-radius: 12px; margin-bottom: 15px; width: 100%; }
+        /* -- CLEAN MODAL LOGIN -- */
+        .modal-content { 
+            border: none; 
+            border-radius: 16px; 
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        
+        .modal-header-clean {
+            padding: 40px 32px 20px;
+            text-align: center;
+        }
 
-        .dev-card { text-align: center; }
-        .dev-img { width: 110px; height: 110px; border-radius: 22px; object-fit: cover; margin-bottom: 15px; border: 4px solid #f8fafc; }
+        .brand-icon-circle {
+            width: 64px;
+            height: 64px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 24px;
+            border: 1px solid var(--border-color);
+        }
 
-        .btn-buy { background: var(--primary); color: #fff; border: none; padding: 14px; border-radius: 14px; font-weight: 700; width: 100%; text-decoration: none; display: block; text-align: center; cursor: pointer; }
-        .btn-buy-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 14px; border-radius: 14px; font-weight: 700; width: 100%; text-decoration: none; display: block; text-align: center; cursor: pointer; }
+        .modal-body-clean {
+            padding: 0 32px 40px;
+        }
 
-        /* MODAL LOGIN STYLING */
-        .modal-content { border: none; border-radius: 24px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2); }
-        .login-modal-header { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 40px 20px; color: white; text-align: center; }
-        .login-modal-header i { font-size: 3rem; margin-bottom: 15px; opacity: 0.9; }
-        .login-modal-body { padding: 40px 30px; background: #fff; }
-        .login-instruction { color: var(--slate); font-size: 0.95rem; margin-bottom: 25px; }
-        .g_id_signin { display: flex; justify-content: center; transition: transform 0.2s; }
-        .g_id_signin:hover { transform: scale(1.02); }
+        .btn-google-wrapper {
+            min-height: 44px;
+            display: flex;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        /* Responsiveness Utilities */
+        @media (max-width: 576px) {
+            .modal-dialog { margin: 1rem; }
+            .modal-header-clean { padding: 32px 20px 16px; }
+            .modal-body-clean { padding: 0 20px 32px; }
+            .display-4 { font-size: 2.2rem; }
+        }
+
+        /* Standard Buttons */
+        .btn-primary { background: var(--primary); border: none; padding: 10px 24px; border-radius: 10px; font-weight: 600; }
+        .btn-outline-primary { color: var(--primary); border: 1px solid var(--primary); border-radius: 10px; }
     </style>
 </head>
 <body>
 
     <nav class="navbar sticky-top">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand" href="#"><img src="logo2.png" alt="Logo"></a>
-            <div class="d-none d-lg-flex gap-4 fw-bold">
-                <a href="#fitur" class="text-dark text-decoration-none">Fitur</a>
-                <a href="#harga" class="text-dark text-decoration-none">Harga</a>
-                <a href="#tim" class="text-dark text-decoration-none">Programmer</a>
+            <a class="navbar-brand fw-800 text-primary" href="#">LEARN NOVA</a>
+            <div class="d-none d-lg-flex gap-4 fw-600">
+                <a href="#fitur" class="text-dark text-decoration-none opacity-75">Fitur</a>
+                <a href="#harga" class="text-dark text-decoration-none opacity-75">Harga</a>
             </div>
             <div id="authContainer">
-                <button class="btn btn-primary rounded-pill px-4 fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">Masuk</button>
             </div>
         </div>
     </nav>
 
-    <section class="hero-section">
-        <div class="container">
-            <div class="row align-items-center">
+    <main class="container">
+        <section class="hero-section text-center text-lg-start">
+            <div class="row align-items-center g-5">
                 <div class="col-lg-6">
-                    <h1 class="display-4 fw-800 mb-4">Administrasi Sekolah <br><span class="text-primary">Tanpa Ribet.</span></h1>
-                    <p class="lead text-slate mb-5">Digitalisasi kehadiran dan manajemen data dalam satu dashboard terintegrasi.</p>
-                    <a href="#harga" class="btn btn-primary btn-lg px-5 rounded-4 fw-bold">Dapatkan Sekarang</a>
-                </div>
-                <div class="col-lg-6"><img src="1.jpg" class="section-img" alt="Preview App"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="fitur" class="py-5">
-        <div class="container">
-            <h2 class="fw-800 text-center mb-5">Tiga Role Utama</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="role-card text-center">
-                        <div class="role-icon bg-admin mx-auto"><i class="fas fa-shield-alt"></i></div>
-                        <h5 class="fw-bold">Admin Sekolah</h5>
-                        <p class="small text-slate">Kelola master data, guru, siswa, kelas, dan laporan otomatis.</p>
+                    <h1 class="display-4 fw-800 mb-4">Administrasi Sekolah Lebih <span class="text-primary">Efisien.</span></h1>
+                    <p class="lead text-slate mb-4">Dashboard terintegrasi untuk guru, siswa, dan admin sekolah dalam satu platform.</p>
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+                        <a href="#harga" class="btn btn-primary py-3 px-4">Mulai Sekarang</a>
+                        <a href="#fitur" class="btn btn-light py-3 px-4 border">Pelajari Fitur</a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="role-card text-center">
-                        <div class="role-icon bg-guru mx-auto"><i class="fas fa-chalkboard-teacher"></i></div>
-                        <h5 class="fw-bold">Guru / Staff</h5>
-                        <p class="small text-slate">Generate QR Code absensi harian dan pantau kehadiran murid.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="role-card text-center">
-                        <div class="role-icon bg-murid mx-auto"><i class="fas fa-user-graduate"></i></div>
-                        <h5 class="fw-bold">Siswa / Murid</h5>
-                        <p class="small text-slate">Scan QR untuk absen dan ajukan surat izin secara digital.</p>
-                    </div>
+                <div class="col-lg-6">
+                    <img src="1.jpg" class="section-img" alt="Dashboard Preview">
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0"><img src="1.png" class="section-img" alt="Why Choose Us"></div>
-                <div class="col-lg-6 ps-lg-5">
-                    <h2 class="fw-800 mb-4">Kenapa Harus <span class="text-primary">Pilih Kami?</span></h2>
-                    <div class="d-flex mb-3"><i class="fas fa-check-circle text-primary me-3 mt-1"></i><p class="mb-0 fw-600">Sistem QR Code Dinamis (Anti Manipulasi).</p></div>
-                    <div class="d-flex mb-3"><i class="fas fa-check-circle text-primary me-3 mt-1"></i><p class="mb-0 fw-600">Laporan PDF/Excel Siap Cetak.</p></div>
-                    <div class="d-flex mb-3"><i class="fas fa-check-circle text-primary me-3 mt-1"></i><p class="mb-0 fw-600">Real-time Dashboard & Notifikasi.</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="harga" class="pricing-section">
-        <div class="container">
-            <h2 class="fw-800 text-center mb-5">Pilihan Harga Script</h2>
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="price-card">
-                        <h5 class="fw-bold">Starter Pack</h5>
-                        <div class="price-amount">250k<span>/Sekali</span></div>
-                        <ul class="feat-list">
-                            <li><i class="fas fa-check"></i> 1 Role Admin Only</li>
-                            <li><i class="fas fa-check"></i> Full Source Code</li>
-                            <li><i class="fas fa-times"></i> No Support</li>
-                        </ul>
-                        <button onclick="handleOrder('Starter Pack')" class="btn-buy-outline">Pilih Paket</button>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="price-card featured">
-                        <div class="price-badge">PALING POPULER</div>
-                        <h5 class="fw-bold text-primary">Full Business</h5>
-                        <div class="price-amount">750k<span>/Sekali</span></div>
-                        <ul class="feat-list">
-                            <li><i class="fas fa-check"></i> 3 Role (Admin, Guru, Siswa)</li>
-                            <li><i class="fas fa-check"></i> Scan QR & GPS Location</li>
-                            <li><i class="fas fa-check"></i> Bantuan Instalasi</li>
-                            <li><i class="fas fa-check"></i> Database Terintegrasi</li>
-                        </ul>
-                        <button onclick="handleOrder('Full Business')" class="btn-buy">Beli Sekarang</button>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="price-card">
-                        <h5 class="fw-bold">Enterprise</h5>
-                        <div class="price-amount">1.5jt<span>/Sekali</span></div>
-                        <ul class="feat-list">
-                            <li><i class="fas fa-check"></i> Semua Fitur Business</li>
-                            <li><i class="fas fa-check"></i> Gratis Hosting 1 Thn</li>
-                            <li><i class="fas fa-check"></i> Custom Logo & Nama</li>
-                            <li><i class="fas fa-check"></i> Prioritas Support</li>
-                        </ul>
-                        <button onclick="handleOrder('Enterprise')" class="btn-buy-outline">Hubungi Kami</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="komentar" class="py-5">
-        <div class="container">
-            <div class="comment-box text-center">
-                <h3 class="fw-800 mb-4">Isi Komentar / Pertanyaan</h3>
-                <div id="commentArea">
-                    <div id="commentLocked" class="py-4">
-                        <p class="text-slate">Login Google untuk bertanya.</p>
-                        <button class="btn btn-outline-primary fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal">Login Sekarang</button>
-                    </div>
-                    <div id="commentForm" style="display:none;" class="text-start">
-                        <textarea id="clientMessage" class="form-input" rows="4" placeholder="Tulis pertanyaan Anda..."></textarea>
-                        <button onclick="sendCommentWA()" class="btn btn-primary w-100 py-3 fw-bold rounded-3">Kirim via WhatsApp</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="tim" class="py-5 bg-light">
-        <div class="container text-center">
-            <h2 class="fw-800 mb-5">Tim Developer</h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-6 col-md-3">
-                    <div class="dev-card"><img src="3.jpg" class="dev-img"><h6 class="fw-bold mb-0">Firdy Ridho Fillah</h6><p class="small text-primary">Software Engineer</p></div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="dev-card"><img src="4.jpg" class="dev-img"><h6 class="fw-bold mb-0">Carvagie Adyatma</h6><p class="small text-primary">Electrical Engineer</p></div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="dev-card"><img src="5.jpg" class="dev-img"><h6 class="fw-bold mb-0">Randy Mayysa</h6><p class="small text-primary">Electrical Engineer</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
             <div class="modal-content">
-                <div class="login-modal-header">
-                    <i class="fas fa-user-circle"></i>
-                    <h4 class="fw-800 m-0">Selamat Datang!</h4>
-                    <p class="small opacity-75 m-0">Akses fitur penuh Learn Nova</p>
-                </div>
-                <div class="login-modal-body text-center">
-                    <p class="login-instruction">
-                        Gunakan akun Google Anda untuk masuk secara instan dan aman.
-                    </p>
-                    
-                    <div id="g_id_onload" 
-                         data-client_id="1056123421576-foe3br0al7gcnp8iklsi4dl6gk9i8uqq.apps.googleusercontent.com" 
-                         data-callback="handleCredentialResponse"
-                         data-auto_prompt="false">
+                <div class="modal-header-clean">
+                    <div class="brand-icon-circle">
+                        <i class="fa-solid fa-shield-halved"></i>
                     </div>
+                    <h4 class="fw-700 mb-2">Selamat Datang Kembali</h4>
+                    <p class="text-slate small">Silakan masuk untuk melanjutkan ke dashboard</p>
+                </div>
+                
+                <div class="modal-body-clean text-center">
+                    <hr class="text-muted opacity-25 mb-4">
                     
-                    <div class="g_id_signin" 
-                         data-type="standard" 
-                         data-shape="pill" 
-                         data-theme="outline" 
-                         data-text="signin_with" 
-                         data-size="large" 
-                         data-logo_alignment="left">
+                    <div class="btn-google-wrapper">
+                        <div id="g_id_onload" 
+                             data-client_id="1056123421576-foe3br0al7gcnp8iklsi4dl6gk9i8uqq.apps.googleusercontent.com" 
+                             data-callback="handleCredentialResponse"
+                             data-auto_prompt="false">
+                        </div>
+                        <div class="g_id_signin" 
+                             data-type="standard" 
+                             data-shape="rectangular" 
+                             data-theme="outline" 
+                             data-text="continue_with" 
+                             data-size="large" 
+                             data-logo_alignment="left"
+                             data-width="320"> </div>
                     </div>
 
-                    <div class="mt-4">
-                        <small class="text-muted">
-                            Dengan login, Anda menyetujui <br> 
-                            <a href="#" class="text-decoration-none">Ketentuan Layanan</a> kami.
-                        </small>
-                    </div>
+                    <p class="mt-4 mb-0 text-muted" style="font-size: 0.75rem;">
+                        Belum punya akun? <a href="#" class="text-primary text-decoration-none fw-600">Hubungi Admin Sekolah</a>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="py-4 text-center border-top small text-slate">&copy; 2026 Learn Nova Team. Digitalizing School.</footer>
+    <footer class="py-5 text-center border-top mt-5">
+        <p class="text-slate small mb-0">&copy; 2026 Learn Nova Team. Built for efficiency.</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -268,38 +168,31 @@
             let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
             return JSON.parse(window.atob(base64));
         }
+        
         function handleCredentialResponse(response) {
             sessionStorage.setItem("user", JSON.stringify(decodeJwtResponse(response.credential)));
             location.reload();
         }
+
         window.onload = function() {
             const user = JSON.parse(sessionStorage.getItem("user"));
             if(user) {
                 document.getElementById('authContainer').innerHTML = `
-                    <div class="d-flex align-items-center gap-2">
-                        <img src="${user.picture}" style="width:30px; border-radius:50%">
-                        <span class="fw-bold small d-none d-md-inline">${user.name}</span>
-                        <button onclick="sessionStorage.clear(); location.reload();" class="btn btn-sm btn-link text-danger text-decoration-none p-0 ms-2">Logout</button>
+                    <div class="d-flex align-items-center gap-2 border p-1 pe-3 rounded-pill">
+                        <img src="${user.picture}" style="width:32px; height:32px; border-radius:50%">
+                        <span class="fw-600 small d-none d-sm-inline">${user.name.split(' ')[0]}</span>
+                        <button onclick="sessionStorage.clear(); location.reload();" class="btn btn-sm text-danger p-0 ms-1 fw-bold text-xs" style="font-size: 11px">LOGOUT</button>
                     </div>`;
-                const commentLocked = document.getElementById('commentLocked');
-                const commentForm = document.getElementById('commentForm');
-                if(commentLocked) commentLocked.style.display = 'none';
-                if(commentForm) commentForm.style.display = 'block';
             }
         };
+
         function handleOrder(paket) {
             const user = JSON.parse(sessionStorage.getItem("user"));
             if(!user) { 
-                let myModal = new bootstrap.Modal(document.getElementById('loginModal'));
-                myModal.show();
+                new bootstrap.Modal(document.getElementById('loginModal')).show();
+            } else {
+                window.open(`https://wa.me/6285819541419?text=${encodeURIComponent("Halo Admin, saya "+user.name+". Pesan paket "+paket)}`, '_blank');
             }
-            else { window.open(`https://wa.me/6285819541419?text=${encodeURIComponent("Halo Admin, saya "+user.name+" ("+user.email+"). Saya mau pesan paket *"+paket+"*.")}`, '_blank'); }
-        }
-        function sendCommentWA() {
-            const user = JSON.parse(sessionStorage.getItem("user"));
-            const msg = document.getElementById('clientMessage').value;
-            if(!msg) return alert("Isi pesan!");
-            window.open(`https://wa.me/6285819541419?text=${encodeURIComponent("Halo Admin, saya *"+user.name+"* bertanya:\n"+msg)}`, '_blank');
         }
     </script>
 </body>
