@@ -55,6 +55,15 @@
 
         .btn-buy { background: var(--primary); color: #fff; border: none; padding: 14px; border-radius: 14px; font-weight: 700; width: 100%; text-decoration: none; display: block; text-align: center; cursor: pointer; }
         .btn-buy-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 14px; border-radius: 14px; font-weight: 700; width: 100%; text-decoration: none; display: block; text-align: center; cursor: pointer; }
+
+        /* MODAL LOGIN STYLING */
+        .modal-content { border: none; border-radius: 24px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2); }
+        .login-modal-header { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 40px 20px; color: white; text-align: center; }
+        .login-modal-header i { font-size: 3rem; margin-bottom: 15px; opacity: 0.9; }
+        .login-modal-body { padding: 40px 30px; background: #fff; }
+        .login-instruction { color: var(--slate); font-size: 0.95rem; margin-bottom: 25px; }
+        .g_id_signin { display: flex; justify-content: center; transition: transform 0.2s; }
+        .g_id_signin:hover { transform: scale(1.02); }
     </style>
 </head>
 <body>
@@ -212,11 +221,40 @@
     </section>
 
     <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center">
-                <h4 class="fw-800 mb-4">Login Google</h4>
-                <div id="g_id_onload" data-client_id="1056123421576-foe3br0al7gcnp8iklsi4dl6gk9i8uqq.apps.googleusercontent.com" data-callback="handleCredentialResponse"></div>
-                <div class="g_id_signin d-flex justify-content-center" data-type="standard"></div>
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
+            <div class="modal-content">
+                <div class="login-modal-header">
+                    <i class="fas fa-user-circle"></i>
+                    <h4 class="fw-800 m-0">Selamat Datang!</h4>
+                    <p class="small opacity-75 m-0">Akses fitur penuh Learn Nova</p>
+                </div>
+                <div class="login-modal-body text-center">
+                    <p class="login-instruction">
+                        Gunakan akun Google Anda untuk masuk secara instan dan aman.
+                    </p>
+                    
+                    <div id="g_id_onload" 
+                         data-client_id="1056123421576-foe3br0al7gcnp8iklsi4dl6gk9i8uqq.apps.googleusercontent.com" 
+                         data-callback="handleCredentialResponse"
+                         data-auto_prompt="false">
+                    </div>
+                    
+                    <div class="g_id_signin" 
+                         data-type="standard" 
+                         data-shape="pill" 
+                         data-theme="outline" 
+                         data-text="signin_with" 
+                         data-size="large" 
+                         data-logo_alignment="left">
+                    </div>
+
+                    <div class="mt-4">
+                        <small class="text-muted">
+                            Dengan login, Anda menyetujui <br> 
+                            <a href="#" class="text-decoration-none">Ketentuan Layanan</a> kami.
+                        </small>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -243,13 +281,18 @@
                         <span class="fw-bold small d-none d-md-inline">${user.name}</span>
                         <button onclick="sessionStorage.clear(); location.reload();" class="btn btn-sm btn-link text-danger text-decoration-none p-0 ms-2">Logout</button>
                     </div>`;
-                document.getElementById('commentLocked').style.display = 'none';
-                document.getElementById('commentForm').style.display = 'block';
+                const commentLocked = document.getElementById('commentLocked');
+                const commentForm = document.getElementById('commentForm');
+                if(commentLocked) commentLocked.style.display = 'none';
+                if(commentForm) commentForm.style.display = 'block';
             }
         };
         function handleOrder(paket) {
             const user = JSON.parse(sessionStorage.getItem("user"));
-            if(!user) { new bootstrap.Modal(document.getElementById('loginModal')).show(); }
+            if(!user) { 
+                let myModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                myModal.show();
+            }
             else { window.open(`https://wa.me/6285819541419?text=${encodeURIComponent("Halo Admin, saya "+user.name+" ("+user.email+"). Saya mau pesan paket *"+paket+"*.")}`, '_blank'); }
         }
         function sendCommentWA() {
@@ -261,6 +304,3 @@
     </script>
 </body>
 </html>
-
-
-
