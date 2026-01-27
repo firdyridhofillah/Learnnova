@@ -25,7 +25,9 @@
         .navbar { padding: 15px 0; background: #fff; border-bottom: 1px solid #f1f5f9; }
         .navbar-brand img { height: 50px; width: auto; }
 
-        .hero-section { padding: 100px 0 60px; }
+        /* PERBAIKAN: Mengurangi padding atas dari 100px menjadi 40px agar tidak kosong */
+        .hero-section { padding: 40px 0 60px; } 
+        
         .section-img { width: 100%; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
 
         .role-card { background: #fff; border-radius: 20px; padding: 30px; border: 1px solid #f1f5f9; height: 100%; }
@@ -57,32 +59,10 @@
         .btn-buy-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 14px; border-radius: 14px; font-weight: 700; width: 100%; text-decoration: none; display: block; text-align: center; cursor: pointer; }
 
         /* --- UI LOGIN CLEAN FIX --- */
-        #loginModal .modal-content {
-            border: none;
-            border-radius: 20px;
-            padding: 40px 20px;
-        }
-        #loginModal .modal-dialog {
-            max-width: 400px; /* Responsif: tidak terlalu lebar di desktop */
-            margin: 1.75rem auto;
-        }
-        .login-icon-box {
-            width: 60px;
-            height: 60px;
-            background: #f1f5f9;
-            color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin: 0 auto 20px;
-        }
-        @media (max-width: 576px) {
-            #loginModal .modal-dialog {
-                margin: 1rem; /* Biar gak mepet layar di HP */
-            }
-        }
+        #loginModal .modal-content { border: none; border-radius: 20px; padding: 35px 25px; }
+        #loginModal .modal-dialog { max-width: 380px; margin: 1.75rem auto; }
+        .login-header-icon { width: 56px; height: 56px; background: #f8fafc; color: var(--primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 15px; border: 1px solid #e2e8f0; }
+        @media (max-width: 576px) { #loginModal .modal-dialog { margin: 1rem; } .hero-section { padding: 20px 0 40px; } }
     </style>
 </head>
 <body>
@@ -241,30 +221,12 @@
 
     <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center shadow-lg border-0">
-                <div class="login-icon-box">
-                    <i class="fa-solid fa-user-shield"></i>
-                </div>
-                <h4 class="fw-800 mb-2">Selamat Datang</h4>
-                <p class="text-slate small mb-4">Silakan masuk menggunakan akun Google Anda</p>
-                
-                <div id="g_id_onload" 
-                    data-client_id="1056123421576-foe3br0al7gcnp8iklsi4dl6gk9i8uqq.apps.googleusercontent.com" 
-                    data-callback="handleCredentialResponse">
-                </div>
-                
-                <div class="g_id_signin d-flex justify-content-center" 
-                    data-type="standard" 
-                    data-shape="rectangular" 
-                    data-theme="outline" 
-                    data-text="signin_with" 
-                    data-size="large" 
-                    data-logo_alignment="left">
-                </div>
-                
-                <div class="mt-4 pt-2">
-                    <small class="text-muted">Butuh bantuan? <a href="#" class="text-primary text-decoration-none">Hubungi Kami</a></small>
-                </div>
+            <div class="modal-content shadow-lg border-0">
+                <div class="login-header-icon"><i class="fa-solid fa-lock"></i></div>
+                <h4 class="fw-800 mb-1">Masuk</h4>
+                <p class="text-slate small mb-4">Gunakan akun Google untuk melanjutkan</p>
+                <div id="g_id_onload" data-client_id="1056123421576-foe3br0al7gcnp8iklsi4dl6gk9i8uqq.apps.googleusercontent.com" data-callback="handleCredentialResponse"></div>
+                <div class="g_id_signin d-flex justify-content-center" data-type="standard" data-shape="rectangular" data-theme="outline" data-size="large" data-width="300"></div>
             </div>
         </div>
     </div>
