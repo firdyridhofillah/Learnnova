@@ -6,6 +6,8 @@
     <title>Learn Nova — Professional School System</title>
     <link rel="icon" href="logo.png" type="logo/png">
     
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,17 +23,19 @@
 
         body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--dark); overflow-x: hidden; scroll-behavior: smooth; background: #fff; }
 
+        /* Navbar Custom */
         .navbar { padding: 15px 0; background: #fff; border-bottom: 1px solid #f1f5f9; }
         .navbar-brand img { height: 50px; width: auto; }
 
+        /* Hero Section */
         .hero-section { padding: 40px 0 60px; } 
         .section-img { width: 100%; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
 
-        /* --- FITUR INTERAKTIF --- */
+        /* Feature Card Interaktif */
         .feature-box { 
             background: #fff; border-radius: 24px; padding: 30px; 
             border: 1px solid #f1f5f9; transition: all 0.3s ease; 
-            cursor: pointer; height: 100%; position: relative; overflow: hidden;
+            cursor: pointer; height: 100%;
         }
         .feature-box:hover { 
             transform: translateY(-10px); 
@@ -41,31 +45,33 @@
         .feature-box i { 
             width: 60px; height: 60px; border-radius: 18px; 
             display: flex; align-items: center; justify-content: center; 
-            font-size: 1.5rem; margin-bottom: 20px; transition: 0.3s;
+            font-size: 1.5rem; margin-bottom: 20px;
         }
         .icon-admin { background: #eff6ff; color: #2563eb; }
         .icon-guru { background: #f5f3ff; color: #7c3aed; }
         .icon-murid { background: #ecfdf5; color: #10b981; }
-        
-        .learn-more { font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- MODAL CUSTOM --- */
-        .modal-content { border-radius: 28px; border: none; padding: 20px; }
-        .modal-header { border: none; }
-        .modal-body h4 { font-weight: 800; }
-        .feat-badge { padding: 5px 15px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-bottom: 15px; display: inline-block; }
-
+        /* Pricing Section */
         .pricing-section { background: #fafafa; padding: 80px 0; }
         .price-card { background: #fff; border-radius: 30px; padding: 45px 30px; border: 2px solid #f1f5f9; height: 100%; position: relative; display: flex; flex-direction: column; }
         .price-card.featured { border: 3px solid var(--primary); box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.15); }
-        .price-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #fff; padding: 6px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; z-index: 10; }
-        .price-amount { font-size: 2.5rem; font-weight: 800; margin: 20px 0; letter-spacing: -1px; }
+        .price-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #fff; padding: 6px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+        .price-amount { font-size: 2.5rem; font-weight: 800; margin: 20px 0; }
         .price-amount span { font-size: 1rem; color: var(--slate); font-weight: 400; }
-        
-        .btn-buy { background: var(--primary); color: #fff; border: none; padding: 14px; border-radius: 14px; font-weight: 700; width: 100%; text-decoration: none; display: block; text-align: center; cursor: pointer; }
-        .btn-buy-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 14px; border-radius: 14px; font-weight: 700; width: 100%; text-decoration: none; display: block; text-align: center; cursor: pointer; }
 
+        /* Comment & Buttons */
+        .comment-box { background: #fff; border-radius: 24px; padding: 40px; border: 1px solid #f1f5f9; max-width: 800px; margin: 0 auto; }
+        .form-input { background: var(--light); border: 2px solid transparent; padding: 15px; border-radius: 12px; margin-bottom: 15px; width: 100%; }
+        .btn-buy { background: var(--primary); color: #fff; border: none; padding: 14px; border-radius: 14px; font-weight: 700; width: 100%; text-align: center; cursor: pointer; border: 2px solid var(--primary); }
+        .btn-buy-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); padding: 14px; border-radius: 14px; font-weight: 700; width: 100%; cursor: pointer; }
+        .btn-buy:hover { background: #1d4ed8; color: white; }
+
+        /* Developer Card */
         .dev-img { width: 110px; height: 110px; border-radius: 22px; object-fit: cover; margin-bottom: 15px; border: 4px solid #f8fafc; }
+
+        /* Modal Login Fix */
+        #loginModal .modal-content { border: none; border-radius: 24px; padding: 30px; }
+        .login-header-icon { width: 56px; height: 56px; background: #f8fafc; color: var(--primary); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 15px; border: 1px solid #e2e8f0; }
     </style>
 </head>
 <body>
@@ -74,9 +80,9 @@
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="#"><img src="logo2.png" alt="Logo"></a>
             <div class="d-none d-lg-flex gap-4 fw-bold">
-                <a href="#fitur" class="text-dark text-decoration-none">Fitur Utama</a>
+                <a href="#fitur" class="text-dark text-decoration-none">Fitur</a>
                 <a href="#harga" class="text-dark text-decoration-none">Harga</a>
-                <a href="#tim" class="text-dark text-decoration-none">Tim</a>
+                <a href="#tim" class="text-dark text-decoration-none">Programmer</a>
             </div>
             <div id="authContainer">
                 <button class="btn btn-primary rounded-pill px-4 fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
@@ -89,111 +95,45 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <h1 class="display-4 fw-800 mb-4">Administrasi Sekolah <br><span class="text-primary">Tanpa Ribet.</span></h1>
-                    <p class="lead text-slate mb-5">Digitalisasi kehadiran dan manajemen data dalam satu dashboard terintegrasi yang modern.</p>
-                    <div class="d-flex gap-3">
-                        <a href="#fitur" class="btn btn-primary btn-lg px-4 rounded-4 fw-bold">Lihat Fitur</a>
-                        <a href="#harga" class="btn btn-outline-primary btn-lg px-4 rounded-4 fw-bold">Beli Script</a>
-                    </div>
+                    <p class="lead text-slate mb-5">Digitalisasi kehadiran dan manajemen data dalam satu dashboard terintegrasi.</p>
+                    <a href="#harga" class="btn btn-primary btn-lg px-5 rounded-4 fw-bold shadow">Dapatkan Sekarang</a>
                 </div>
                 <div class="col-lg-6"><img src="1.jpg" class="section-img" alt="Preview App"></div>
             </div>
         </div>
     </header>
 
-    <section id="fitur" class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-800">Satu Sistem, Beragam Solusi</h2>
-                <p class="text-slate">Klik pada fitur untuk melihat detail penjelasan.</p>
-            </div>
-            
-            <div class="row g-4">
+    <section id="fitur" class="py-5">
+        <div class="container text-center">
+            <h2 class="fw-800 mb-5">Tiga Role Utama</h2>
+            <div class="row g-4 text-start">
                 <div class="col-md-4">
                     <div class="feature-box" data-bs-toggle="modal" data-bs-target="#modalAdmin">
                         <i class="fas fa-shield-alt icon-admin"></i>
-                        <h5 class="fw-bold">Manajemen Admin</h5>
-                        <p class="small text-slate mb-4">Pusat kendali seluruh data sekolah dalam satu genggaman tangan.</p>
-                        <span class="learn-more">Selengkapnya <i class="fas fa-arrow-right ms-1"></i></span>
+                        <h5 class="fw-bold">Admin Sekolah</h5>
+                        <p class="small text-slate mb-3">Kelola master data, guru, siswa, kelas, dan laporan otomatis.</p>
+                        <span class="text-primary small fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="feature-box" data-bs-toggle="modal" data-bs-target="#modalGuru">
                         <i class="fas fa-chalkboard-teacher icon-guru"></i>
-                        <h5 class="fw-bold">Fitur Guru & Staff</h5>
-                        <p class="small text-slate mb-4">Efisiensi waktu dalam mengelola absen dan agenda pengajaran.</p>
-                        <span class="learn-more">Selengkapnya <i class="fas fa-arrow-right ms-1"></i></span>
+                        <h5 class="fw-bold">Guru / Staff</h5>
+                        <p class="small text-slate mb-3">Generate QR Code absensi harian dan pantau kehadiran murid.</p>
+                        <span class="text-primary small fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="feature-box" data-bs-toggle="modal" data-bs-target="#modalMurid">
                         <i class="fas fa-user-graduate icon-murid"></i>
-                        <h5 class="fw-bold">Akses Murid</h5>
-                        <p class="small text-slate mb-4">Kemudahan akses informasi dan transparansi kehadiran siswa.</p>
-                        <span class="learn-more">Selengkapnya <i class="fas fa-arrow-right ms-1"></i></span>
+                        <h5 class="fw-bold">Siswa / Murid</h5>
+                        <p class="small text-slate mb-3">Scan QR untuk absen dan ajukan surat izin secara digital.</p>
+                        <span class="text-primary small fw-bold">Lihat Detail <i class="fas fa-arrow-right ms-1"></i></span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <div class="modal fade" id="modalAdmin" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content shadow">
-                <div class="modal-header"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body text-center">
-                    <div class="feat-badge icon-admin">SUPER ADMIN ROLE</div>
-                    <h4 class="mb-3">Master Dashboard Admin</h4>
-                    <p class="text-slate">Admin memiliki akses penuh untuk mengelola ekosistem sekolah secara digital:</p>
-                    <ul class="text-start small fw-bold text-dark list-unstyled">
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> CRUD Data Guru, Siswa, & Kelas</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Kelola Kalender Pendidikan</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Ekspor Laporan Absensi ke PDF/Excel</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Pengaturan Akun & Log Keamanan</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalGuru" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content shadow">
-                <div class="modal-header"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body text-center">
-                    <div class="feat-badge icon-guru">STAFF & TEACHER ROLE</div>
-                    <h4 class="mb-3">Absensi QR & Monitoring</h4>
-                    <p class="text-slate">Guru dapat menghemat waktu administrasi hingga 80% dengan fitur otomatis:</p>
-                    <ul class="text-start small fw-bold text-dark list-unstyled">
-                        <li class="mb-2"><i class="fas fa-check-circle text-purple me-2"></i> Generate QR Code Absensi Per Sesi</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-purple me-2"></i> Rekap Kehadiran Siswa Real-time</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-purple me-2"></i> Kirim Pengumuman ke Dashboard Siswa</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-purple me-2"></i> Verifikasi Surat Izin/Sakit Digital</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalMurid" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content shadow">
-                <div class="modal-header"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body text-center">
-                    <div class="feat-badge icon-murid">STUDENT ROLE</div>
-                    <h4 class="mb-3">Self Service Student</h4>
-                    <p class="text-slate">Mendorong kemandirian siswa dalam memantau aktivitas akademik mereka:</p>
-                    <ul class="text-start small fw-bold text-dark list-unstyled">
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Scan QR Absensi via Smartphone</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Lihat Jadwal & Kalender Akademik</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Pengajuan Izin/Sakit dengan Upload Berkas</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Dashboard E-Rapor (Coming Soon)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <section id="harga" class="pricing-section">
         <div class="container">
@@ -203,47 +143,170 @@
                     <div class="price-card">
                         <h5 class="fw-bold">Starter Pack</h5>
                         <div class="price-amount">250k<span>/Sekali</span></div>
-                        <ul class="list-unstyled mb-4 small fw-600">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 1 Role Admin Only</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Full Source Code</li>
-                            <li class="mb-2"><i class="fas fa-times text-danger me-2"></i> No Support</li>
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li><i class="fas fa-check text-success me-2"></i> 1 Role Admin Only</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Full Source Code</li>
                         </ul>
-                        <button class="btn-buy-outline">Pilih Paket</button>
+                        <button onclick="handleOrder('Starter Pack')" class="btn-buy-outline">Pilih Paket</button>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="price-card featured">
-                        <div class="price-badge">PALING POPULER</div>
+                        <div class="price-badge">POPULER</div>
                         <h5 class="fw-bold text-primary">Full Business</h5>
                         <div class="price-amount">750k<span>/Sekali</span></div>
-                        <ul class="list-unstyled mb-4 small fw-600">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> 3 Role (Admin, Guru, Siswa)</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Scan QR & Id Card</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Bantuan Instalasi</li>
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li><i class="fas fa-check text-success me-2"></i> 3 Role Lengkap</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Bantuan Instalasi</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Scan QR & ID Card</li>
                         </ul>
-                        <button class="btn-buy">Pilih Paket</button>
+                        <button onclick="handleOrder('Full Business')" class="btn-buy">Pilih Paket</button>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="price-card">
                         <h5 class="fw-bold">Enterprise</h5>
                         <div class="price-amount">1.5jt<span>/Sekali</span></div>
-                        <ul class="list-unstyled mb-4 small fw-600">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Semua Fitur Business</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Gratis Hosting 1 Thn</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Custom Nama Aplikasi</li>
+                        <ul class="list-unstyled mb-4 flex-grow-1">
+                            <li><i class="fas fa-check text-success me-2"></i> Semua Fitur Business</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Gratis Hosting 1 Thn</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Custom Nama App</li>
                         </ul>
-                        <button class="btn-buy-outline">Pilih Paket</button>
+                        <button onclick="handleOrder('Enterprise')" class="btn-buy-outline">Pilih Paket</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-5 text-center border-top small text-slate">
-        &copy; 2026 Learn Nova Team. Digitalizing School.
-    </footer>
+    <section id="komentar" class="py-5">
+        <div class="container">
+            <div class="comment-box text-center">
+                <h3 class="fw-800 mb-4">Ada Pertanyaan?</h3>
+                <div id="commentLocked">
+                    <p class="text-slate">Silakan login Google untuk mulai bertanya.</p>
+                    <button class="btn btn-outline-primary fw-bold px-4" data-bs-toggle="modal" data-bs-target="#loginModal">Login Sekarang</button>
+                </div>
+                <div id="commentForm" style="display:none;" class="text-start">
+                    <textarea id="clientMessage" class="form-input" rows="4" placeholder="Tulis pertanyaan Anda di sini..."></textarea>
+                    <button onclick="sendCommentWA()" class="btn btn-primary w-100 py-3 fw-bold rounded-3">Kirim Pertanyaan via WhatsApp</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tim" class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="fw-800 mb-5">Tim Developer</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="dev-card"><img src="3.jpg" class="dev-img" onerror="this.src='https://via.placeholder.com/110'"><h6 class="fw-bold mb-0">Firdy Ridho Fillah</h6><p class="small text-primary">Software Engineer</p></div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="dev-card"><img src="4.jpg" class="dev-img" onerror="this.src='https://via.placeholder.com/110'"><h6 class="fw-bold mb-0">Carvagie Adyatma</h6><p class="small text-primary">Electrical Engineer</p></div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="dev-card"><img src="5.jpg" class="dev-img" onerror="this.src='https://via.placeholder.com/110'"><h6 class="fw-bold mb-0">Randy Mayysa</h6><p class="small text-primary">Electrical Engineer</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="modalAdmin" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"><div class="modal-content shadow text-center">
+            <div class="icon-admin mx-auto mb-3" style="width:60px; height:60px; border-radius:15px; display:flex; align-items:center; justify-content:center;"><i class="fas fa-shield-alt fa-lg"></i></div>
+            <h4>Fitur Admin</h4>
+            <p class="text-slate small">Akses penuh manajemen data: Import/Export Excel, Kelola User, Manajemen Kalender, dan Laporan Absensi Bulanan.</p>
+        </div></div>
+    </div>
+    
+    <div class="modal fade" id="modalGuru" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"><div class="modal-content shadow text-center">
+            <div class="icon-guru mx-auto mb-3" style="width:60px; height:60px; border-radius:15px; display:flex; align-items:center; justify-content:center;"><i class="fas fa-chalkboard-teacher fa-lg"></i></div>
+            <h4>Fitur Guru</h4>
+            <p class="text-slate small">Membuat QR Code dinamis untuk absen, menginput nilai/rapor, dan melihat statistik kehadiran kelas secara real-time.</p>
+        </div></div>
+    </div>
+
+    <div class="modal fade" id="modalMurid" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"><div class="modal-content shadow text-center">
+            <div class="icon-murid mx-auto mb-3" style="width:60px; height:60px; border-radius:15px; display:flex; align-items:center; justify-content:center;"><i class="fas fa-user-graduate fa-lg"></i></div>
+            <h4>Fitur Murid</h4>
+            <p class="text-slate small">Scan absen via smartphone, melihat jadwal pelajaran, kalender akademik, dan mendownload E-Rapor.</p>
+        </div></div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg border-0 text-center">
+                <div class="login-header-icon"><i class="fa-solid fa-lock"></i></div>
+                <h4 class="fw-800 mb-1">Masuk Sekarang</h4>
+                <p class="text-slate small mb-4">Gunakan akun Google untuk verifikasi pemesanan.</p>
+                <div id="g_id_onload" data-client_id="1056123421576-foe3br0al7gcnp8iklsi4dl6gk9i8uqq.apps.googleusercontent.com" data-callback="handleCredentialResponse"></div>
+                <div class="g_id_signin d-flex justify-content-center" data-type="standard" data-shape="rectangular" data-theme="outline" data-size="large" data-width="300"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-4 text-center border-top small text-slate">&copy; 2026 Learn Nova Team. Digitalizing School.</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+    <script>
+        // Fungsi Decode JWT (Dapat Data Profil dari Google)
+        function decodeJwtResponse(token) {
+            let base64Url = token.split('.')[1];
+            let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            return JSON.parse(window.atob(base64));
+        }
+
+        // Callback setelah user sukses login Google
+        function handleCredentialResponse(response) {
+            const userData = decodeJwtResponse(response.credential);
+            sessionStorage.setItem("user", JSON.stringify(userData));
+            location.reload(); // Reload halaman untuk update tampilan
+        }
+
+        // Jalankan saat halaman dimuat
+        window.onload = function() {
+            const user = JSON.parse(sessionStorage.getItem("user"));
+            if(user) {
+                // Update Navbar jika sudah login
+                document.getElementById('authContainer').innerHTML = `
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="${user.picture}" style="width:30px; border-radius:50%">
+                        <span class="fw-bold small d-none d-md-inline">${user.name}</span>
+                        <button onclick="sessionStorage.clear(); location.reload();" class="btn btn-sm btn-link text-danger text-decoration-none p-0 ms-2 small">Logout</button>
+                    </div>`;
+                
+                // Munculkan form komentar
+                if(document.getElementById('commentLocked')) document.getElementById('commentLocked').style.display = 'none';
+                if(document.getElementById('commentForm')) document.getElementById('commentForm').style.display = 'block';
+            }
+        };
+
+        // Fungsi Tombol Pesan Paket
+        function handleOrder(paket) {
+            const user = JSON.parse(sessionStorage.getItem("user"));
+            if(!user) {
+                // Jika belum login, buka modal login
+                const myModal = new bootstrap.Modal(document.getElementById('loginModal'));
+                myModal.show();
+            } else {
+                // Jika sudah login, lempar ke WA
+                const text = encodeURIComponent(`Halo Admin, saya ${user.name} (${user.email}). Saya tertarik memesan paket *${paket}* di Learn Nova.`);
+                window.open(`https://wa.me/6285819541419?text=${text}`, '_blank');
+            }
+        }
+
+        // Fungsi Kirim Pesan WA
+        function sendCommentWA() {
+            const user = JSON.parse(sessionStorage.getItem("user"));
+            const msg = document.getElementById('clientMessage').value;
+            if(!msg) return alert("Harap isi pesan Anda.");
+            
+            const text = encodeURIComponent(`Halo Admin, saya *${user.name}* ingin bertanya:\n\n${msg}`);
+            window.open(`https://wa.me/6285819541419?text=${text}`, '_blank');
+        }
+    </script>
+</body>
 </html>
